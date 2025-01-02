@@ -40,4 +40,4 @@ To run server :
 python manage.py runserver
 ```
 
-After starting server go to your web browser and visit [http://localhost:8000] store and for admin module visit http://127.0.0.1:8888/admin/ and login using superuser credentials.
+After starting server go to your web browser and visit http://127.0.0.1:8888/ store and for admin module visit http://127.0.0.1:8888/admin/ and login using superuser credentials.
