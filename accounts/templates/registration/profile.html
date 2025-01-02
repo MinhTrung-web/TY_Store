@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Thêm dòng này -->
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 col-12 p-4">
+    <img src="{% static 'avatar.svg' %}" alt="Avatar" class="img-fluid" />
+  </div>
+  <div class="col-md-6 col-12 d-flex justify-content-center flex-column">
+    <h4 class="text-center mb-3">Chỉnh sửa thông tin cá nhân</h4>
+    <form method="POST" style="width:100%">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Email</label>
+        <input readonly type="email" value="{{ user.email }}" class="form-control" />
+      </div>
+      <!-- Render từng field -->
+      <div class="form-group">
+        <label for="id_first_name">First Name</label>
+        {{ form.first_name }}
+      </div>
+      <div class="form-group">
+        <label for="id_last_name">Last Name</label>
+        {{ form.last_name }}
+      </div>
+      <button class="btn btn-success" type="submit">Chỉnh sửa thông tin cá nhân</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}

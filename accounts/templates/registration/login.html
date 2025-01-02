@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Login
+{% endblock title %} {% block content %}
+<div class="card auth-card card-body mx-auto my-4 shadow-sm">
+  <h1 class="display-4 text-center">Đăng nhập</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_username">Username:</label>
+      {{ form.username }}
+    </div>
+    <div class="form-group">
+      <label for="id_password">Password:</label>
+      {{ form.password }}
+    </div>
+    <button class="btn btn-primary" type="submit">Đăng nhập</button>
+  </form>
+</div>
+{% endblock content %}

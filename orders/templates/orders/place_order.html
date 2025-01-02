@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Place Order{% endblock title %}
+
+{% block content %}
+<div class="row my-3">
+  <div class="col-md-6 col-12 mb-3">
+    <div class="card">
+      <h3 class="card-header mb-0">Đơn hàng</h3>
+      <div class="card-body">
+        {% for i in summary %}
+        <p class="card-text d-flex justify-content-between mb-2">
+          <span class="d-block">{{ i.quantity }} x {{ i.product.name }}</span>
+          <span class="d-block">Rs.{{ i.total }}</span>
+        </p>
+        {% empty %}
+        <h5 class="card-text font-weight-light">Không có hàng trong giỏ</h5>
+        {% endfor %}
+        <h4>
+          Tổng tiền: <b>{{ cart.get_total_price }} VNĐ</b>
+        </h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-12">
+    <div class="card card-body">
+      <h3 class="mb-3">Thông tin nhận hàng</h3>
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_name">Tên khách hàng</label>
+          {{ form.name }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_phone">Điện thoại</label>
+          {{ form.phone }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_email">Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_address">Địa chỉ</label>
+          {{ form.address }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_city">Thành phố</label>
+          {{ form.city }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_pin_code">Mã giảm giá</label>
+          {{ form.pin_code }}
+        </div>
+
+        {% if cart.empty %}
+          <div class="alert alert-danger my-2">Giỏ hàng trống.</div>
+          <button disabled class="btn btn-success">Đặt hàng</button>
+        {% else %}
+          <button type="submit" class="btn btn-success">Đặt hàng</button>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

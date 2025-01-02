@@ -1,0 +1,29 @@
+{% extends 'orders/base_generic.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Đơn đã đặt</h2>
+    <div class="card">
+        <div class="card-body">
+            <h3>Đơn mua : {{ order.id }}</h3>
+            <p><strong>Tình trạng:</strong> {{ order.status }}</p>
+            <p><strong>Tên khách hàng:</strong> {{ order.name }}</p>
+            <p><strong>Điện thoại:</strong> {{ order.phone }}</p>
+            <p><strong>Email:</strong> {{ order.email }}</p>
+            <p><strong>Địa chỉ:</strong> {{ order.address }}</p>
+            <p><strong>Thành phố:</strong> {{ order.city }}</p>
+            <p><strong>Mã giảm giá:</strong> {{ order.pin_code }}</p>
+            <p><strong>Tổng giá tiền:</strong> {{ order.total_price }} VNĐ</p>
+
+            <h4>Tên sản phẩm</h4>
+            <ul>
+                {% for item in order.items.all %}
+                <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Total: {{ item.total }} VNĐ</li>
+                {% empty %}
+                <li>No items in this order.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
