@@ -5,6 +5,7 @@ This app also uses several other packages like -
 
 - django-crispy-forms
 - django-filter
+- django-heroku
 - pillow
 - easy-thumbnails
 - dj-database-url
